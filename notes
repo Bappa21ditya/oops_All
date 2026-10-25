@@ -1,0 +1,108 @@
+Core OOP Fundamentals — Java Interview Notes
+
+1. What is OOP? Why use it?
+Object-Oriented Programming (OOP) is a programming approach that organizes code around objects containing data and behavior.
+- Why use it? Code reusability, modularity, maintainability, and easier testing.
+- Four pillars: Encapsulation, Inheritance, Polymorphism, and Abstraction.
+
+2. Class vs Object
+- Class: Blueprint defining fields and methods.
+- Object: Instance of a class created at runtime.
+class Car {
+    String color;
+    void drive() { System.out.println("Driving"); }
+}
+
+Car c = new Car();
+
+
+3. State, Behavior, and Identity
+
+- State: Data stored in fields, e.g., color = "Red".
+- Behavior: Actions performed by methods, e.g., drive().
+- Identity: Distinguishes one object from another, even if their data is identical.
+4. Instance vs Local vs Static Variables
+
+- Instance variable: Belongs to an object; each object has its own copy.
+- Local variable: Declared inside a method or block; must be initialized before use.
+- Static variable: Belongs to the class; shared among its instances.
+class Employee {
+    String name;                 // Instance
+    static String company;       // Static
+
+    void work() {
+        int hours = 8;           // Local
+    }
+}
+
+
+5. Constructors and Object Initialization
+
+A constructor initializes an object when it is created using new. It has the same name as the class and no return type.
+class Student {
+    String name;
+
+    Student(String name) {
+        this.name = name;
+    }
+}
+
+
+6. Default vs Parameterized Constructor
+
+- Default constructor: Compiler-provided, no-argument constructor when you declare no constructors.
+- Parameterized constructor: Accepts arguments to initialize an object.
+- If you declare any constructor, Java does not automatically provide the no-argument constructor.
+Student() { }                    // No-argument constructor
+Student(String name) { }         // Parameterized constructor
+
+
+Interview tip: A default constructor is specifically compiler-generated; a manually written no-argument constructor is not technically a default constructor.
+
+7. Constructor Chaining Using this() and super()
+- this() calls another constructor in the same class.
+- super() calls a constructor of the immediate parent class.
+- In traditional Java syntax, either must be the first constructor statement.
+- You cannot use both as separate first statements in the same constructor.
+class Animal {
+    Animal(String name) { }
+}
+
+class Dog extends Animal {
+    Dog() {
+        this("Buddy");
+    }
+
+    Dog(String name) {
+        super(name);
+    }
+}
+
+
+8. Initialization Order
+For a typical Java object, the order is:
+1. Static fields and static blocks, once per class initialization.
+2. Instance fields and instance initializer blocks, in textual order.
+3. Parent-class instance initialization and constructor execution before the child constructor body.
+4. Child-class instance initialization and constructor body.
+Remember: The superclass constructor executes before the subclass constructor body. Static initialization follows class initialization order.
+9. Object References, Creation, and Assignment
+- new creates an object and returns a reference to it.
+- A reference variable holds the reference, not the object itself.
+- Assigning one reference to another makes both refer to the same object.
+Student s1 = new Student();
+Student s2 = s1;
+
+s2.name = "Amit";
+System.out.println(s1.name); // Amit
+
+
+Both variables refer to the same object. Changing the object through either reference is visible through the other.
+10. Procedural vs Object-Oriented Programming
+Procedural programming	Object-oriented programming
+Organized around functions	Organized around objects
+Data and functions are often separate	Data and behavior are grouped together
+Focuses on procedures and steps	Focuses on objects and their interactions
+Example: C	Example: Java
+
+Interview point: Java is primarily object-oriented, but it also supports primitive types and static methods, so not everything in Java is an object.
